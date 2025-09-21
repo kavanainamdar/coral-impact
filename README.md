@@ -80,6 +80,7 @@ Do NOT commit (ephemeral / reproducible):
 
 Large / evolving datasets:
 * If future datasets become large (>50MB) consider using Git LFS or hosting them externally (object storage) and referencing via a fetch layer instead of committing directly.
+* The very large `intersections_full.geojson` is retained only on the `full-data` branch to keep `prod` / `main` lightweight; the application currently uses the lighter `intersections_light.geojson`.
 
 ### First-Time Upstream Push
 
