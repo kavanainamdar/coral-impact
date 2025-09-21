@@ -17,5 +17,7 @@ body { font-family: system-ui, Arial, sans-serif; }
 .analysis-table th, .analysis-table td { padding:4px 8px; border-bottom:1px solid #eee; }
 .analysis-table th { background:#fafafa; position:sticky; top:0; z-index:1; font-weight:600; font-size:0.7rem; letter-spacing:.5px; text-transform:uppercase; }
 .analysis-table tbody tr:nth-child(even){ background:#fcfcfc; }
-.analysis-table td.num { text-align:right; font-variant-numeric:tabular-nums; }
+.analysis-table td.num { font-variant-numeric:tabular-nums; }
+.analysis-table th, .analysis-table td { text-align:center; }
+.analysis-table th.year-col, .analysis-table td.year-col { text-align:center; }
 .analysis-footnote { font-size:0.7rem; line-height:1.2; margin-top:8px; color:#444; }

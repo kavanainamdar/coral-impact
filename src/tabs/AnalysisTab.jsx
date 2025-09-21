@@ -6,6 +6,8 @@ const NUM_FMT = new Intl.NumberFormat(undefined,{maximumFractionDigits:3});
 
 function formatCell(value, col){
   if (value === null || value === undefined || value === '') return '';
+  // Preserve YEAR (or year) as plain integer without grouping separators
+  if (/^year$/i.test(col)) return String(value);
   if (typeof value !== 'number' || Number.isNaN(value)) return value;
   if (/p_value|pearson_p/i.test(col)) {
     if (value === 0) return '<1e-308';
@@ -45,7 +47,7 @@ export default function AnalysisTab() {
   // const rSeries = data.map(d => ({ year:d.year, r:d.pearson_r })); // reserved for future correlation chart
 
   const columns = Object.keys(data[0]);
-  const numericCols = new Set(columns.filter(c => typeof data[0][c] === 'number'));
+  const numericCols = new Set(columns.filter(c => typeof data[0][c] === 'number' && c.toLowerCase() !== 'year'));
 
   return (
     <div className='panel analysis-section'>
@@ -88,13 +90,20 @@ export default function AnalysisTab() {
         <table className='analysis-table'>
           <thead>
             <tr>
-              {columns.map(col => <th key={col}>{col}</th>)}
+              {columns.map(col => <th key={col} className={col.toLowerCase()==='year' ? 'year-col' : ''}>{col}</th>)}
             </tr>
           </thead>
           <tbody>
             {data.map((row,i)=>(
               <tr key={i}>
-                {columns.map(col => <td key={col} className={numericCols.has(col)?'num':''}>{formatCell(row[col], col)}</td>)}
+                {columns.map(col => (
+                  <td
+                    key={col}
+                    className={col.toLowerCase()==='year' ? 'year-col' : (numericCols.has(col)?'num':'')}
+                  >
+                    {formatCell(row[col], col)}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
