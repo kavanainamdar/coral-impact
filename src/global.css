@@ -1,0 +1,23 @@
+html, body, #root { height:100%; margin:0; padding:0; }
+body { font-family: system-ui, Arial, sans-serif; }
+/* Ensure any parent flex containers pass height */
+#root > div { height:100%; display:flex; flex-direction:column; }
+.tabs { padding:4px 8px; background:#f8f8f8; border-bottom:1px solid #ddd; }
+.tab-btn { margin-right:6px; }
+.tab-btn.active { font-weight:bold; }
+.content { flex:1; min-height:0; }
+/* Leaflet container should flex */
+.leaflet-container { width:100%!important; height:100%!important; background:#eef; }
+.legend { box-shadow:0 1px 3px rgba(0,0,0,0.25); }
+/* Analysis tab formatting */
+.analysis-section { max-width:1200px; margin:0 auto; }
+.analysis-charts { display:grid; gap:24px; }
+.analysis-table-wrapper { margin-top:16px; border:1px solid #ddd; border-radius:4px; overflow:auto; background:#fff; }
+.analysis-table { border-collapse:collapse; width:100%; font-size:0.8rem; }
+.analysis-table th, .analysis-table td { padding:4px 8px; border-bottom:1px solid #eee; }
+.analysis-table th { background:#fafafa; position:sticky; top:0; z-index:1; font-weight:600; font-size:0.7rem; letter-spacing:.5px; text-transform:uppercase; }
+.analysis-table tbody tr:nth-child(even){ background:#fcfcfc; }
+.analysis-table td.num { font-variant-numeric:tabular-nums; }
+.analysis-table th, .analysis-table td { text-align:center; }
+.analysis-table th.year-col, .analysis-table td.year-col { text-align:center; }
+.analysis-footnote { font-size:0.7rem; line-height:1.2; margin-top:8px; color:#444; }
